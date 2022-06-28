@@ -53,5 +53,25 @@ public class ProductManagerTest {
 
     }
 
+    @Test
+    public void shouldSearchByWhenNoProducts() {
+        ProductRepository repository = new ProductRepository();
+        ProductManager manager = new ProductManager(repository);
+        Product[] actual = manager.searchBy("Телефон");
+        Product[] expected = new Product[0];
+        assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldSearchByWhenOneProduct() {
+        ProductRepository repository = new ProductRepository();
+        ProductManager manager = new ProductManager(repository);
+        manager.add(smartphone2);
+        Product[] actual = manager.searchBy("Телефон");
+        Product[] expected = {smartphone2};
+        assertArrayEquals(expected, actual);
+
+    }
 
 }
